@@ -3,20 +3,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        double width = 0;
+        double height = 0;
+        double area = 0;
+
         Scanner scanner = new Scanner(System.in);
 
-        Double a;
-        Double b;
-        Double c;
+        System.out.println("Enter the width of rectangle: ");
+        width = scanner.nextDouble();
+        System.out.println("Enter the heigth of rectangle: ");
+        height = scanner.nextDouble();
 
-        System.out.println("Enter side \"a\": ");
-        a = scanner.nextDouble();
-
-        System.out.println("Enter side \"b\": ");
-        b = scanner.nextDouble();
-
-        c = Math.sqrt((a*a) + (b*b));
-        System.out.println("The hypotenuse is "+ c);
+        area = width * height;
+        System.out.println("The area of rectangle is " + area + "cm²");
 
         scanner.close();
     }
