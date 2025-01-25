@@ -4,43 +4,28 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-//        System.out.println(Math.PI);
-//        System.out.println(Math.E);
-//        System.out.println(Math.TAU+"\n");
-//
-//        double result;
-//
-//        result = (int) Math.pow(2, 5);
-//        System.out.println(result);
-//        result = Math.sqrt(4);
-//        System.out.println(result);
-//        result = Math.abs(-5);
-//        System.out.println(result);
-//        result = Math.round(6.4);
-//        System.out.println(result);
-//        result = Math.ceil(6.2);
-//        System.out.println(result);
-//        result = Math.floor(6.7);
-//        System.out.println(result);
-//        result = Math.max(8, 9);
-//        System.out.println(result);
-//        result = Math.min(8, 9);
-//        System.out.println(result);
 
         Scanner scanner = new Scanner(System.in);
 
-        double radius;
-        double circumference;
-        double area;
-        double volume;
+        // Compound Interest Calculator
+        String email;
+        String username;
+        String domain;
 
-        System.out.print("Enter the radius of circle: ");
-        radius = scanner.nextDouble();
+        System.out.print("Please enter your email: ");
+        email = scanner.nextLine();
 
-        circumference = 2 * Math.PI * radius;
-        area = Math.PI * Math.pow(radius, 2);
-        volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+        if(email.contains("@")) {
+            username = email.substring(0, email.indexOf("@"));
+            domain = email.substring(email.indexOf("@"));
 
-        System.out.printf("The circumference of the circle is %.1fcm\nThe area of the circle is %.1fcm²\nThe volume of the circle is %.1fcm³\n", circumference, area, volume);
+            System.out.println(username);
+            System.out.println(domain);
+
+            scanner.close();
+        } else {
+            System.out.println("You entered an invalid email address");
+        }
+
     }
 }
