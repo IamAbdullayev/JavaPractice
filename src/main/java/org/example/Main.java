@@ -7,55 +7,41 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        // WEIGHT CONVERSION PROGRAM
+        // Temperature converter
 
-        // Declare variables
-        double number;
-        double convertedNumber = 0;
-        String userMeasurementUnit;
-        String convertedMeasurementUnit;
+        double temperature;
+        double newTemperature;
+        String unit;
 
-        // Get number and unit of measurement
-        System.out.println("Hello, this is weight conversion program. Please enter number without unit of measurement. ");
-        number = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.println("Choose your measurement unit (kg, lbs, oz): ");
-        userMeasurementUnit = scanner.nextLine();
-        System.out.println("Enter converted measurement unit (kg, lbs, oz): ");
-        convertedMeasurementUnit = scanner.nextLine();
-
-        // Converting
-        if(userMeasurementUnit.equals("kg")) {
-            if(convertedMeasurementUnit.equals("kg")) {
-                convertedNumber = number;
-            }
-            else if(convertedMeasurementUnit.equals("lbs")) {
-                convertedNumber = (number * 2.20462);
-            }
-            else if(convertedMeasurementUnit.equals("oz")) {
-                convertedNumber = (number * 35.274);
-            }
-//            System.out.println(number + userMeasurementUnit + " = " + convertedNumber);
-            System.out.printf("%.2f%s = %.2f%s%n", number, userMeasurementUnit, convertedNumber, convertedMeasurementUnit);
+        System.out.println("This is temperature converter program.\nEnter the temperature: ");
+        temperature = scanner.nextDouble();
+        System.out.print("If you want converted celsius to fahrenheit, enter ' F ' and you want converted fahrenheit to celsius, enter ' C ': ");
+        unit = scanner.next().toUpperCase();
+        if (!unit.equals("C") && !unit.equals("F")) {
+            System.out.println("You choose invalid option.");
+            return;
         }
+        newTemperature = (unit.equals("F")) ? (temperature * 1.8 + 32) : ((temperature - 32) / 1.8);
 
-        if(userMeasurementUnit.equals("lbs")) {
-            switch (convertedMeasurementUnit) {
-                case "kg" -> convertedNumber = (number / 2.20462);
-                case "lbs" -> convertedNumber = number;
-                case "oz" -> convertedNumber = (number * 28.3495);
-            }
-            System.out.printf("%.2f%s = %.2f%s%n", number, userMeasurementUnit, convertedNumber, convertedMeasurementUnit);
-        }
+        System.out.printf("The converted temperature is %.2f°%s", newTemperature, unit);
 
-        if (userMeasurementUnit.equals("oz")) {
-            switch (convertedMeasurementUnit) {
-                case "kg" -> convertedNumber = (number / 35.274);
-                case "lbs" -> convertedNumber = (number / 28.3495);
-                case "oz" -> convertedNumber = number;
-            }
-            System.out.printf("%.2f%s = %.2f%s%n", number, userMeasurementUnit, convertedNumber, convertedMeasurementUnit);
-        }
+//        if (choose == 1) {
+//            System.out.print("Enter temperature in Celsius: ");
+//            temperature = scanner.nextDouble();
+//            newTemperature = temperature * 1.8 + 32;
+//            System.out.printf("%.2f Celsius is %.2f Fahrenheit.", temperature, newTemperature);
+//        }
+//        else if (choose == 2) {
+//            System.out.print("Enter temperature in Fahrenheit: ");
+//            temperature = scanner.nextDouble();
+//            newTemperature = (temperature - 32) / 1.8;
+//            System.out.printf("%.2f Fahrenheit is %.2f Celsius.", temperature, newTemperature);
+//        }
+//        else {
+//            System.out.println("You choose invalid option.");
+//        }
 
+
+        scanner.close();
     }
 }
