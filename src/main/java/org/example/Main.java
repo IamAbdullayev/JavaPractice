@@ -7,40 +7,42 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Temperature converter
+        double num1;
+        double num2;
+        char operator;
+        double result = 0;
+        boolean invalid = true;
 
-        double temperature;
-        double newTemperature;
-        String unit;
+        System.out.println("Hello! This is a calculator.");
+        System.out.print("Please, enter the first number: ");
+        num1 = scanner.nextDouble();
+        System.out.print("Enter an operator (+, -, *, /): ");
+        operator = scanner.next().charAt(0);
+        System.out.print("Enter the second number: ");
+        num2 = scanner.nextDouble();
 
-        System.out.println("This is temperature converter program.\nEnter the temperature: ");
-        temperature = scanner.nextDouble();
-        System.out.print("If you want converted celsius to fahrenheit, enter ' F ' and you want converted fahrenheit to celsius, enter ' C ': ");
-        unit = scanner.next().toUpperCase();
-        if (!unit.equals("C") && !unit.equals("F")) {
-            System.out.println("You choose invalid option.");
-            return;
+        switch (operator) {
+            case '+' -> result = num1 + num2;
+            case '-' -> result = num1 - num2;
+            case '/' -> {
+                if (num2 == 0) {
+                    System.out.println("Cannot to divide by zero!");
+                    invalid = false;
+                }
+                else {
+                    result = num1 / num2;
+                }
+            }
+            case '*' -> result = num1 * num2;
+            default -> {
+                System.out.println("Invalid operator!");
+                invalid = false;
+            }
         }
-        newTemperature = (unit.equals("F")) ? (temperature * 1.8 + 32) : ((temperature - 32) / 1.8);
 
-        System.out.printf("The converted temperature is %.2f°%s", newTemperature, unit);
-
-//        if (choose == 1) {
-//            System.out.print("Enter temperature in Celsius: ");
-//            temperature = scanner.nextDouble();
-//            newTemperature = temperature * 1.8 + 32;
-//            System.out.printf("%.2f Celsius is %.2f Fahrenheit.", temperature, newTemperature);
-//        }
-//        else if (choose == 2) {
-//            System.out.print("Enter temperature in Fahrenheit: ");
-//            temperature = scanner.nextDouble();
-//            newTemperature = (temperature - 32) / 1.8;
-//            System.out.printf("%.2f Fahrenheit is %.2f Celsius.", temperature, newTemperature);
-//        }
-//        else {
-//            System.out.println("You choose invalid option.");
-//        }
-
+        if (invalid) {
+            System.out.println(result);
+        }
 
         scanner.close();
     }
