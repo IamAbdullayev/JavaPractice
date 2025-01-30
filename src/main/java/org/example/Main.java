@@ -3,47 +3,62 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        double balance = 0;
+        boolean isRunning = true;
+        double amount = 0;
+        int choice;
 
-        double num1;
-        double num2;
-        char operator;
-        double result = 0;
-        boolean invalid = true;
+        while(isRunning) {
+            System.out.println("========================");
+            System.out.println("BANKING PROGRAM");
+            System.out.println("========================");
+            System.out.println("1. Show Balance\n2. Deposit\n3. Withdraw\n4. Exit");
+            System.out.println("========================");
+            System.out.print("Enter your choice (1-4): ");
+            choice = scanner.nextInt();
 
-        System.out.println("Hello! This is a calculator.");
-        System.out.print("Please, enter the first number: ");
-        num1 = scanner.nextDouble();
-        System.out.print("Enter an operator (+, -, *, /): ");
-        operator = scanner.next().charAt(0);
-        System.out.print("Enter the second number: ");
-        num2 = scanner.nextDouble();
-
-        switch (operator) {
-            case '+' -> result = num1 + num2;
-            case '-' -> result = num1 - num2;
-            case '/' -> {
-                if (num2 == 0) {
-                    System.out.println("Cannot to divide by zero!");
-                    invalid = false;
-                }
-                else {
-                    result = num1 / num2;
-                }
+            switch(choice) {
+                case 1 -> getBalance(balance);
+                case 2 -> balance += deposit();
+                case 3 -> balance -= withdraw(balance);
+                case 4 -> isRunning = false;
+                default -> System.out.println("It is invalid choice.");
             }
-            case '*' -> result = num1 * num2;
-            default -> {
-                System.out.println("Invalid operator!");
-                invalid = false;
-            }
-        }
-
-        if (invalid) {
-            System.out.println(result);
         }
 
         scanner.close();
+    }
+
+    static double deposit() {
+        double amount;
+        System.out.print("Enter an amount to be deposited: ");
+        amount = scanner.nextDouble();
+        if(amount < 0) {
+            System.out.println("Amount can't be negative.");
+            return 0;
+        } else {
+            return amount;
+        }
+    }
+
+    static double withdraw(double balance) {
+        double amount;
+        System.out.print("Enter an amount to be withdraw: ");
+        amount = scanner.nextDouble();
+        if(amount < 0 || amount > balance) {
+            System.out.println("Amount can't be negative and greater than balance.");
+            return 0;
+        } else {
+            return amount;
+        }
+    }
+
+    static void getBalance(double balance) {
+        System.out.println("========================");
+        System.out.printf("Your currently balance: %.2f%n%n", balance);
     }
 }
