@@ -6,59 +6,80 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        Random randim = new Random();
+        Scanner scanner = new Scanner(System.in);
 
-        double balance = 0;
-        boolean isRunning = true;
-        double amount = 0;
-        int choice;
+        int numOfDice;
+        int total = 0;
 
-        while(isRunning) {
-            System.out.println("========================");
-            System.out.println("BANKING PROGRAM");
-            System.out.println("========================");
-            System.out.println("1. Show Balance\n2. Deposit\n3. Withdraw\n4. Exit");
-            System.out.println("========================");
-            System.out.print("Enter your choice (1-4): ");
-            choice = scanner.nextInt();
+        System.out.print("Enter the # of dice to roll: ");
+        numOfDice = scanner.nextInt();
 
-            switch(choice) {
-                case 1 -> getBalance(balance);
-                case 2 -> balance += deposit();
-                case 3 -> balance -= withdraw(balance);
-                case 4 -> isRunning = false;
-                default -> System.out.println("It is invalid choice.");
+        if(numOfDice > 0) {
+            for (int i = 0; i < numOfDice; ++i) {
+                int roll = randim.nextInt(1, 7);
+                System.out.println("You rolled: " + roll);
+                printDie(roll);
+                total += roll;
             }
-        }
-
-        scanner.close();
-    }
-
-    static double deposit() {
-        double amount;
-        System.out.print("Enter an amount to be deposited: ");
-        amount = scanner.nextDouble();
-        if(amount < 0) {
-            System.out.println("Amount can't be negative.");
-            return 0;
+            System.out.println("Total: " + total);
         } else {
-            return amount;
+            System.out.println("# of dice must be greater than 0.");
         }
     }
+    static void printDie(int roll) {
 
-    static double withdraw(double balance) {
-        double amount;
-        System.out.print("Enter an amount to be withdraw: ");
-        amount = scanner.nextDouble();
-        if(amount < 0 || amount > balance) {
-            System.out.println("Amount can't be negative and greater than balance.");
-            return 0;
-        } else {
-            return amount;
+        String dice1 = """
+                 ---------
+                |         |
+                |    ●    |
+                |         |
+                 ---------
+                """;
+        String dice2 = """
+                 ---------
+                |      ●  |
+                |         |
+                |  ●      |
+                 ---------
+                """;
+        String dice3 = """
+                 ---------
+                |      ●  |
+                |    ●    |
+                |  ●      |
+                 ---------
+                """;
+        String dice4 = """
+                 ---------
+                | ●     ● |
+                |         |
+                | ●     ● |
+                 ---------
+                """;
+        String dice5 = """
+                 ---------
+                | ●     ● |
+                |    ●    |
+                | ●     ● |
+                 ---------
+                """;
+        String dice6 = """
+                 ---------
+                |  ●   ●  |
+                |  ●   ●  |
+                |  ●   ●  |
+                 ---------
+                """;
+
+        switch (roll) {
+            case 1 -> System.out.println(dice1);
+            case 2 -> System.out.println(dice2);
+            case 3 -> System.out.println(dice3);
+            case 4 -> System.out.println(dice4);
+            case 5 -> System.out.println(dice5);
+            case 6 -> System.out.println(dice6);
+            default -> System.out.println("Invalid roll.");
         }
-    }
-
-    static void getBalance(double balance) {
-        System.out.println("========================");
-        System.out.printf("Your currently balance: %.2f%n%n", balance);
     }
 }
