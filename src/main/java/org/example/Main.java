@@ -1,8 +1,6 @@
 package org.example;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
-import java.io.FileWriter;
 
 public class Main {
 
@@ -10,17 +8,16 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
 
-        String filePath = "C:\\Users\\ramaz\\Desktop\\letter.txt";
-        String textContent = """
-                Hi, my name is Ramazan.
-                I'm 23 years old. I want to get a job in your company.
-                I can write code in Java and other programming languages.
-                What do I need to do to get a job in your company?
-                """;
+        String filePath = "C:\\Users\\ramaz\\Desktop\\JavaEE_copy.docx";
 
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write(textContent);
-            System.out.println("File has been written! ;D");
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            System.out.println("File exist! ;D\n");
+
+            String line;
+            while((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
         }
         catch (FileNotFoundException e) {
             System.out.println("Could not locate file location! :o");
