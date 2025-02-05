@@ -1,54 +1,34 @@
 package org.example;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.Random;
+import java.io.FileWriter;
 
 public class Main {
 
     public static void main(String[] args) {
-        // The Quiz Game
 
-        String[] quetions = {"What is the main function of a router?",
-                             "Which part of the computer considered with brain?",
-                             "What year was Facebook launched?",
-                             "Who known as the father of computer?",
-                             "What was the first programming language?"};
+        Scanner in = new Scanner(System.in);
 
-        String[][] options = {{"1. Storing files", "2. Encrypting data", "3. Directing internet traffic", "4. Managing passwords"},
-                              {"1. HDD", "2. CPU", "3. RAM", "4. GPU"},
-                              {"1. 2004", "2. 2001", "3. 2009", "4. 2024"},
-                              {"1. Steve Jobs", "2. Bill Gates", "3. Alan Turing", "4. Charles Babbage"},
-                              {"1. COBOL", "2. C", "3. Fortran", "4. Assembly"}};
+        String filePath = "C:\\Users\\ramaz\\Desktop\\letter.txt";
+        String textContent = """
+                Hi, my name is Ramazan.
+                I'm 23 years old. I want to get a job in your company.
+                I can write code in Java and other programming languages.
+                What do I need to do to get a job in your company?
+                """;
 
-        int[] answers = {3, 2, 1, 4, 3};
-        int score = 0;
-        int guess;
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("==========================");
-        System.out.println("Welcome to the Quiz Game!");
-        System.out.println("==========================");
-
-        for (int i = 0; i < quetions.length; ++i) {
-            System.out.println(quetions[i]);
-            for (int j = 0; j < options[i].length; ++j) {
-                System.out.println(options[i][j]);
-            }
-            System.out.print("Enter your guess: ");
-            guess = scanner.nextInt();
-            if (guess == answers[i]) {
-                System.out.println("=======");
-                System.out.println("CORRECT");
-                System.out.println("=======");
-                score++;
-            } else {
-                System.out.println("=====");
-                System.out.println("WRONG");
-                System.out.println("=====");
-            }
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(textContent);
+            System.out.println("File has been written! ;D");
         }
-        System.out.println("Your final score is: " + score + " out of " + quetions.length);
+        catch (FileNotFoundException e) {
+            System.out.println("Could not locate file location! :o");
+        }
+        catch (IOException e) {
+            System.out.println("Could not write file! :|");
+        }
 
-        scanner.close();
+        in.close();
     }
 }
