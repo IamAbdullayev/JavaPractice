@@ -1,26 +1,35 @@
 package org.example;
-
-
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 public class Main {
 
     public static void main(String[] args) {
+
         Scanner in = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime alarmTime = null;
+        String filePath = "C:\\Users\\ramaz\\Downloads\\Billie Eilish - BIRDS OF A FEATHER (from Saturday Night Live, 2024).wav";
 
-        System.out.println("You have 5 seconds to enter your name!");
-        MyRunnable myRunnable = new MyRunnable();
-        Thread thread = new Thread(myRunnable);
-        thread.setDaemon(true);
-        thread.start();
+        while (alarmTime == null) {
+            try {
+                System.out.print("Enter the time of alarm (HH:MM:SS): ");
+                String inputTime = in.nextLine();
+                alarmTime = LocalTime.parse(inputTime, formatter);
 
+                System.out.println("Alarm set for " + alarmTime);
+            }
+            catch (DateTimeParseException e) {
+                System.out.println("Invalid format! Please use HH:MM:SS");
+            }
+        }
 
-        System.out.print("Enter your name: ");
-        String name = in.nextLine();
-        System.out.println("Your name is " + name);
+        AlarmClock alarmClock = new AlarmClock(alarmTime, filePath, in);
+        Thread alarmThread = new Thread(alarmClock);
+        alarmThread.start();
 
-        in.close();
     }
 }
