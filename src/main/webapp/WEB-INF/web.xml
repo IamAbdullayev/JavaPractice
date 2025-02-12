@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <servlet>
+        <servlet-name>MyJSP</servlet-name>
+        <jsp-file>/helloJSP.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyJSP</servlet-name>
+        <url-pattern>/hello-servlet-jsp</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>showCart</servlet-name>
+        <jsp-file>/showCart.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showCart</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>setCookiesServlet</servlet-name>
+        <servlet-class>com.example.myjakartaee.setCookiesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>setCookiesServlet</servlet-name>
+        <url-pattern>/set-cookies</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>getCookiesServlet</servlet-name>
+        <servlet-class>com.example.myjakartaee.getCookiesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getCookiesServlet</servlet-name>
+        <url-pattern>/get-cookies</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteCookiesServlet</servlet-name>
+        <servlet-class>com.example.myjakartaee.deleteCookiesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteCookiesServlet</servlet-name>
+        <url-pattern>/delete-cookies</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Library</servlet-name>
+        <servlet-class>com.example.myjakartaee.Library</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Library</servlet-name>
+        <url-pattern>/library</url-pattern>
+    </servlet-mapping>
+
+</web-app>
