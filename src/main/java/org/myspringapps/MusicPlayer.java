@@ -1,29 +1,60 @@
 package org.myspringapps;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Random;
 
-@Component
-public class MusicPlayer {
-    private Music music1;
-    private Music music2;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music1,
-                       @Qualifier("classicalMusic") Music music2) {
-        this.music1 = music1;
-        this.music2 = music2;
+public class MusicPlayer {
+    private List<Music> musics;
+
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.volume}")
+    private int volume;
+
+    public MusicPlayer(MusicGenres genres) {
+        musics = genres.getMusics();
     }
 
-    Random random = new Random();
+    public String getName() {
+        return name;
+    }
 
-    public void play(MusicGenre genre) {
-        switch (genre) {
-            case ROCK -> System.out.println("Playing " + music1.getSongs().get(random.nextInt(3)));
-            case CLASSICAL -> System.out.println("Playing " + music2.getSongs().get(random.nextInt(3)));
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+
+    public void play() {
+        System.out.println("Playing " +
+                musics.get(new Random().nextInt(3))
+                        .getSongs().get(new Random().nextInt(3))
+        );
+    }
+
+    @PostConstruct
+    public void initMethod() {
+        System.out.println("InItIaLiZe");
+    }
+
+    @PreDestroy
+    public void destroyMethod() {
+        System.out.println("DeStRoY");
     }
 }
