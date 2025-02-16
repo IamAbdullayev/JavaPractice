@@ -1,18 +1,15 @@
 package org.myspringapps;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class RockMusic implements Music {
+public class PopMusic implements Music {
     private final List<String> songs = new ArrayList<>();
 
-    public RockMusic() {
-        songs.add("Rock_1");
-        songs.add("Rock_2");
-        songs.add("Rock_3");
+    public PopMusic() {
+        songs.add("I am POP_1");
+        songs.add("I am POP_2");
+        songs.add("I am POP_3");
     }
 
     @Override
