@@ -2,11 +2,7 @@ package org.myspringapps;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Random;
@@ -20,8 +16,8 @@ public class MusicPlayer {
     @Value("${musicPlayer.volume}")
     private int volume;
 
-    public MusicPlayer(MusicGenres genres) {
-        musics = genres.getMusics();
+    public MusicPlayer(List<Music> musics) {
+        this.musics = musics;
     }
 
     public String getName() {
