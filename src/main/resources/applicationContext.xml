@@ -8,18 +8,25 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <context:component-scan base-package="org.myspringapps"/>
 
-    <!-- id - уникальный идендитификатор нашего обьекта/бина -->
-    <!-- constructor-arg - передаем аргументы в конструктор -->
-    <bean id="musicBean"
-          class="org.myspringapps.ClassicalMusic">
-    </bean>
-    <bean id="musicPlayer"
-          class="org.myspringapps.MusicPlayer">
-        <property name="music" ref="musicBean"/>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<!--    <context:property-placeholder location="classpath:musicPlayer.properties"/>-->
+
+<!--    &lt;!&ndash; id - уникальный идендитификатор нашего обьекта/бина &ndash;&gt;-->
+<!--    &lt;!&ndash; constructor-arg - передаем аргументы в конструктор &ndash;&gt;-->
+<!--    <bean id="musicBean"-->
+<!--          class="org.myspringapps.RockMusic"-->
+<!--          init-method="init"-->
+<!--          destroy-method="destroy"-->
+<!--          factory-method="getRockMusic">-->
+<!--    </bean>-->
+<!--    <bean id="musicPlayer"-->
+<!--          class="org.myspringapps.MusicPlayer"-->
+<!--          init-method="init"-->
+<!--          destroy-method="destroy">-->
+<!--        <property name="music" ref="musicBean"/>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
 
 </beans>
